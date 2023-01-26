@@ -1,20 +1,16 @@
-// import Player from '@vimeo/player';
-// // console.log(Vimeo);
+import Player from '@vimeo/player';
 
-// // // const Vimeo = require('@vimeo/player');
-// // console.log(Vimeo.keys);
+const iframe = document.querySelector('iframe');
+const player = new Player(iframe);
 
-// const iframe = document.querySelector('iframe');
-// const player = new Player(iframe);
+player.on('play', function () {
+  console.log('played the video!');
+});
 
-// player.on('play', function () {
-//   console.log('played the video!');
-// });
+player.on('timeupdate', function () {
+  console.log('counting time');
+});
 
-// player.on('timeupdate', function () {
-//   console.log('counting time');
-// });
-
-// player.getVideoTitle().then(function (title) {
-//   console.log('title:', title);
-// });
+player.getVideoTitle().then(function (title) {
+  console.log('title:', title);
+});
