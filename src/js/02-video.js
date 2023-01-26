@@ -8,7 +8,7 @@ player.on('play', function () {
 });
 
 player.on('timeupdate', function () {
-  console.log('counting time');
+  console.log(player.getCurrentTime());
 });
 
 player.getVideoTitle().then(function (title) {
