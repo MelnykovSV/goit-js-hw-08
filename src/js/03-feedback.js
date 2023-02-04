@@ -1,10 +1,10 @@
 const throttle = require('lodash.throttle');
 
 const form = document.querySelector('.feedback-form');
-const button = document.querySelector('.submit');
 
 // load from storage
 window.addEventListener('load', e => {
+  //Возможно надо было бы провести проверку на то, есть ли там какие-то значения,  но вроде как и без нее никаких прорблем не возникает
   form.querySelector('input').value = localStorage.getItem('email');
   form.querySelector('textarea').value = localStorage.getItem('message');
 });
@@ -16,16 +16,7 @@ form.addEventListener(
     console.log(e.target.name);
     localStorage.setItem(e.target.name, e.target.value);
     console.log(`${e.target.name} value: ${e.target.value}`);
-
-    // localStorage.setItem(item[0], item[1]);
-    // const formData = new FormData(e.currentTarget);
-    // for (item of [...formData]) {
-    //   localStorage.setItem(item[0], item[1]);
-    // }
-
-    // console.log(`Email value: ${localStorage.getItem('email')}`);
-    // console.log(`Message value: ${localStorage.getItem('message')}`);
-  }, 2000)
+  }, 500)
 );
 
 // submit and clear storage
@@ -40,16 +31,3 @@ form.addEventListener('submit', e => {
 
   form.reset();
 });
-
-// form.addEventListener(
-//     'input',
-//     throttle(e => {
-//       const formData = new FormData(e.currentTarget);
-//       for (item of [...formData]) {
-//         localStorage.setItem(item[0], item[1]);
-//       }
-
-//       console.log(`Email value: ${localStorage.getItem('email')}`);
-//       console.log(`Message value: ${localStorage.getItem('message')}`);
-//     }, 500)
-//   );
