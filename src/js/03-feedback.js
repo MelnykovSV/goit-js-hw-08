@@ -1,22 +1,17 @@
 const throttle = require('lodash.throttle');
-
 const form = document.querySelector('.feedback-form');
 
-// load from storage
-window.addEventListener('load', e => {
-  //Можливо, треба було б провести перевірку, чи є там якісь значення, але наче воно й так не видає ніяких помилок
+// checking items in local storage and loading values
+window.addEventListener('load', () => {
+  // ???А навіщо тут проводити перевірку, чи є такий елемент в сховищі? Коли перевірки не було, воно просто підтягувало ті значення що були, а ті, яких не було, не підтягувало.
+  // При цьому навіть помилок в консоль не видавало.
 
-  form.querySelector('input').value = localStorage.getItem('email');
-  form.querySelector('textarea').value = localStorage.getItem('message');
-  if (
-    localStorage.hasOwnProperty('email') ||
-    localStorage.hasOwnProperty('message')
-  ) {
-    form.querySelector('input').value = localStorage.getItem('email');
-    form.querySelector('textarea').value = localStorage.getItem('message');
-    // console.log('there is something');
-  } else {
-    // console.log('there is nothing');
+  const formData = new FormData(form);
+  for (formItem of [...formData]) {
+    if (localStorage.getItem(formItem[0])) {
+      form.querySelector(`[name='${formItem[0]}']`).value =
+        localStorage.getItem(formItem[0]);
+    }
   }
 });
 
@@ -25,7 +20,6 @@ form.addEventListener(
   'input',
   throttle(e => {
     localStorage.setItem(e.target.name, e.target.value);
-    // console.log(`${e.target.name} value: ${e.target.value}`);
   }, 500)
 );
 
@@ -33,12 +27,10 @@ form.addEventListener(
 form.addEventListener('submit', e => {
   e.preventDefault();
 
-  // =============================Проверить  заполнение всех полей!======================================
-
   const formData = new FormData(e.currentTarget);
-  for (item of [...formData]) {
-    localStorage.removeItem(item[0]);
-    console.log(`${item[0]} value: ${item[1]}`);
+  for (formItem of [...formData]) {
+    localStorage.removeItem(formItem[0]);
+    console.log(`${formItem[0]} value: ${formItem[1]}`);
   }
 
   form.reset();
