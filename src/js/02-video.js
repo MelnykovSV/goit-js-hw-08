@@ -13,7 +13,7 @@ player.on(
       .getCurrentTime()
       .then(function (seconds) {
         localStorage.setItem('videoplayer-current-time', seconds);
-        console.log(`Current tims: ${seconds}`);
+        // console.log(`Current tims: ${seconds}`);
       })
       .catch(function (error) {
         // an error occurred
