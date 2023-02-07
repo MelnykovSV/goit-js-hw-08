@@ -10,7 +10,9 @@ if (localStorage.getItem('feedback-form-state')) {
 
 // checking items in object and loading values
 
-// ???? Чи можна прибрати цей EventListener? Тоді formData стане глобальною. Тут це ні на що не впливає, але, мені здається, зайві глобальні змінні це не дуже добре. Може замість EventListenerа просто вставити це в функцію? Чи те, що змінна буде глобальною, це неважливо?
+// ???? Чи можна прибрати цей EventListener?  Але тоді formData стане глобальною. Тут це ні на що не впливає, але, мені здається, зайві глобальні змінні це не дуже добре. Може замість EventListenerа просто вставити це в функцію? Чи те, що змінна буде глобальною, це неважливо?
+
+//???? В чому взагалі різниця між кодом в такому EventListenerі і звичайного коду, який все одно спрацює, коли сторінка завантажиться?
 window.addEventListener('load', () => {
   const formData = new FormData(form);
   for (formItem of [...formData]) {
@@ -42,4 +44,5 @@ form.addEventListener('submit', e => {
   console.log(resultingFormObject);
   localStorage.removeItem('feedback-form-state');
   form.reset();
+  formObject = {};
 });
