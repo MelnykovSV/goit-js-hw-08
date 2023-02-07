@@ -15,7 +15,7 @@ if (localStorage.getItem('feedback-form-state')) {
 //???? В чому взагалі різниця між кодом в такому EventListenerі і звичайного коду, який все одно спрацює, коли сторінка завантажиться?
 window.addEventListener('load', () => {
   const formData = new FormData(form);
-  for (formItem of [...formData]) {
+  for (const formItem of [...formData]) {
     if (formObject[formItem[0]]) {
       form.querySelector(`[name='${formItem[0]}']`).value =
         formObject[formItem[0]];
@@ -38,7 +38,7 @@ form.addEventListener('submit', e => {
   const resultingFormObject = {};
 
   const formData = new FormData(e.currentTarget);
-  for (formItem of [...formData]) {
+  for (const formItem of [...formData]) {
     resultingFormObject[formItem[0]] = formItem[1];
   }
   console.log(resultingFormObject);
