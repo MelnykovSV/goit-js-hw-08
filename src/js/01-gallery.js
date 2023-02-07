@@ -5,8 +5,8 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 const gallery = document.querySelector('.gallery');
 //  ==========================MARKUP CREACTION==============================
 const markup = galleryItems
-  .map(ele => {
-    return `<a class="gallery__item" href = "${ele.original}" data-capture="${ele.description}"><img class="gallery__image" src="${ele.preview}" alt="${ele.description}"></a>`;
+  .map(item => {
+    return `<a class="gallery__item" href = "${item.original}" data-capture="${item.description}"><img class="gallery__image" src="${item.preview}" alt="${item.description}"></a>`;
   })
   .join('');
 
