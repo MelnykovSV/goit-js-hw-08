@@ -13,10 +13,9 @@ player.on(
       .getCurrentTime()
       .then(function (seconds) {
         localStorage.setItem('videoplayer-current-time', seconds);
-        // console.log(`Current tims: ${seconds}`);
       })
       .catch(function (error) {
-        // an error occurred
+        console.log(error);
       });
   }, 1000)
 );
@@ -29,11 +28,13 @@ player
   .catch(function (error) {
     switch (error.name) {
       case 'RangeError':
-        // the time was less than 0 or greater than the video’s duration
+        console.log(
+          'The time was less than 0 or greater than the video’s duration'
+        );
         break;
 
       default:
-        // some other error occurred
+        console.log(`Some other error occurred: ${error}`);
         break;
     }
   });
